@@ -13,7 +13,9 @@
       "prepare": "husky install"
    },
    "dependencies": {
+      "@apollo/client": "^4.1.6",
       "clsx": "^2.1.1",
+      "graphql": "^16.13.1",
       "next": "16.1.6",
       "react": "19.2.3",
       "react-dom": "19.2.3",
