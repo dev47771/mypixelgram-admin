@@ -1,7 +1,11 @@
 import { Config } from 'tailwindcss'
 
 const config: Config = {
-   content: ['./src/app/**/*.{ts,tsx,js,jsx}', './src/components/**/*.{ts,tsx,js,jsx}'],
+   content: [
+      './src/app/**/*.{ts,tsx,js,jsx}',
+      './src/components/**/*.{ts,tsx,js,jsx}',
+      './node_modules/@filippsm/ui-kit-mypixelgram-demo/*/.{js,ts,jsx,tsx}',
+   ],
    theme: {
       extend: {
          colors: {
