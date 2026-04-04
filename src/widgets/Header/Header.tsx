@@ -40,6 +40,8 @@ export const Header = ({ selectedLanguage = 'EN' }: Props) => {
             {/*<Link href={ROUTES.public.signIn} className={variantClasses.large}>*/}
             <Link href={ROUTES.public.signIn} className={'text-xxl leading-l font-semibold'}>
                Inctagram
+               <span className={'font-regular leading-s text-xs'}>Super</span>
+               <span className={'leading-s text-xs font-semibold'}>Admin</span>
             </Link>
             <div className="flex gap-[24px]">{selectComponent}</div>
          </div>
