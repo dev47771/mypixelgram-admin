@@ -17,7 +17,7 @@ import {
    StatisticIcon,
 } from '@filippsm/ui-kit-mypixelgram-demo'
 import { ROUTES } from '@/shared/constants'
-import { YesAndNoModal } from '@/shared/modals'
+import { ConfirmModal } from '@/shared/modals'
 
 type SidebarItemType = {
    id: string
@@ -84,7 +84,7 @@ export const Sidebar = ({ className, ...rest }: Props) => {
             </ul>
          </nav>
 
-         <YesAndNoModal
+         <ConfirmModal
             open={isLogoutModalOpen}
             title="Log Out"
             description="Are you really want to log out of your account?"
