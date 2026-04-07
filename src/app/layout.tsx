@@ -1,15 +1,12 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import { ApolloWrapper } from './providers/ApolloWrapper'
+import { Header } from '@/widgets/Header'
+import { Alert } from '@filippsm/ui-kit-mypixelgram-demo'
 
-const geistSans = Geist({
-   variable: '--font-geist-sans',
-   subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-   variable: '--font-geist-mono',
+const inter = Inter({
+   variable: '--font-inter',
    subsets: ['latin'],
 })
 
@@ -25,8 +22,12 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="en">
-         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-            <ApolloWrapper>{children}</ApolloWrapper>
+         <body className={`${inter.variable} min-h-screen`}>
+            <ApolloWrapper>
+               <Header />
+               {children}
+               <Alert />
+            </ApolloWrapper>
          </body>
       </html>
    )
