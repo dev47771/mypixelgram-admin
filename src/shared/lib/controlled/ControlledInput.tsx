@@ -1,6 +1,5 @@
 'use client'
-import { Input } from '@filippsm/ui-kit-mypixelgram-demo'
-import { InputProps } from '@filippsm/ui-kit-mypixelgram-demo/dist/components/Input/Input'
+import { Input, InputProps } from '@filippsm/ui-kit-mypixelgram-demo'
 import { type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 
 export type ControlledInputProps<T extends FieldValues> = Omit<
