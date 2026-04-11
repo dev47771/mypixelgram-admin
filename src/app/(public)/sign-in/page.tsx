@@ -19,7 +19,7 @@ export default function SignInPage() {
    }
 
    return (
-      <PageContainer className={'pt-6'}>
+      <PageContainer className={'pt-6 pt-[108px]'}>
          <SignInForm
             onSubmitAction={handleLogin}
             errorsFromApi={

@@ -8,6 +8,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signInSchema } from '../../model/schemas'
 import { ControlledInput } from '@/shared/lib/controlled'
+import { cn } from '@/shared/lib'
 
 export type FormFieldError = { field: string; message: string }
 type FormTypes = z.infer<typeof signInSchema>
@@ -39,12 +40,14 @@ export const SignInForm = ({ onSubmitAction, isLoading, errorsFromApi }: Props) 
             onSubmit={handleSubmit(onSubmitAction)}
             className={'flex w-full flex-col items-center'}
          >
+            {/*[&_input]:border-danger-500 - красный бордер для email 
+            чтобы при ошибке для любого из инпутов было одно сообщение с ошибкой и у каждого инпута красный бордер*/}
             <ControlledInput
                name={'email'}
                control={control}
                label={'Email'}
                errorMessage={errors.email?.message}
-               className={'mb-6'}
+               className={cn('mb-6', errors.password?.message && '[&_input]:border-danger-500')}
                autoComplete="email"
                placeholder={'example@example.com'}
             />

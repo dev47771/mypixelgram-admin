@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client'
 import { AdminLoginInput, AdminLoginResponse } from './auth.types'
 import { useMutation } from '@apollo/client/react'
+import { TOKEN } from '@/shared/constants'
 
 const ADMIN_LOGIN = gql`
    mutation AdminLogin($input: AdminLoginInput!) {
@@ -26,7 +27,7 @@ export const useAdminLogin = () => {
 
          const token = result.data?.adminLogin.accessToken
          if (token) {
-            localStorage.setItem('accessToken', token)
+            localStorage.setItem(TOKEN, token)
          }
 
          return result
