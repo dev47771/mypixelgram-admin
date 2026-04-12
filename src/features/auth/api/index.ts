@@ -1,1 +1,2 @@
-export type { AdminLoginInput, AdminLoginResponse } from './auth.types'
+export type { AdminLoginInput } from './auth.types'
+export { useLogin } from './useLogin'

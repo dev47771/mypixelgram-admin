@@ -1,17 +1,9 @@
-import { gql } from '@apollo/client'
-import { AdminLoginInput, AdminLoginResponse } from './auth.types'
-import { useMutation } from '@apollo/client/react'
 import { TOKEN } from '@/shared/constants'
+import { useMutation } from '@apollo/client/react'
+import { ADMIN_LOGIN } from './auth.operations'
+import { AdminLoginInput, AdminLoginResponse } from './auth.types'
 
-const ADMIN_LOGIN = gql`
-   mutation AdminLogin($input: AdminLoginInput!) {
-      adminLogin(input: $input) {
-         accessToken
-      }
-   }
-`
-
-export const useAdminLogin = () => {
+export const useLogin = () => {
    const [login, { data, loading, error }] = useMutation<
       AdminLoginResponse,
       { input: AdminLoginInput }

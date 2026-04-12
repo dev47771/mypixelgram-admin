@@ -4,11 +4,10 @@ import { PageContainer } from '@/shared/components/PageContainer'
 import { useRouter } from 'next/navigation'
 import { ROUTES } from '@/shared/constants'
 import { SignInForm } from '@/features/auth/ui/SignInForm'
-import { useAdminLogin } from '@/features/auth/api/auth.service'
-import { AdminLoginInput } from '@/features/auth/api'
+import { AdminLoginInput, useLogin } from '@/features/auth/api'
 
 export default function SignInPage() {
-   const { login, loading, error } = useAdminLogin()
+   const { login, loading, error } = useLogin()
    const router = useRouter()
 
    const handleLogin = async (data: AdminLoginInput) => {
