@@ -1,4 +1,3 @@
-import { TOKEN } from '@/shared/constants'
 import { useMutation } from '@apollo/client/react'
 import { ADMIN_LOGIN } from './auth.operations'
 import { AdminLoginInput, AdminLoginResponse } from './auth.types'
@@ -16,11 +15,6 @@ export const useLogin = () => {
                input: { email, password },
             },
          })
-
-         const token = result.data?.adminLogin.accessToken
-         if (token) {
-            localStorage.setItem(TOKEN, token)
-         }
 
          return result
       } catch (err) {

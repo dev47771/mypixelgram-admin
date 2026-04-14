@@ -10,7 +10,7 @@ import { signInSchema } from '../../model/schemas'
 import { ControlledInput } from '@/shared/lib/controlled'
 import { cn } from '@/shared/lib'
 
-export type FormFieldError = { field: string; message: string }
+type FormFieldError = { field: string; message: string }
 type FormTypes = z.infer<typeof signInSchema>
 
 type Props = {
