@@ -28,13 +28,13 @@ export const config = {
 } */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { ADMIN_AUTH_COOKIE_NAME } from '@/shared/constants/auth'
 
-const AUTH_COOKIE_NAME = 'adminAccessToken' // замени на реальное имя cookie
 const PRIVATE_PATHS = ['/users-list', '/statistics', '/payments-list', '/posts-list']
 
-export function proxy(req: NextRequest) {
+export function middleware(req: NextRequest) {
    const { pathname } = req.nextUrl
-   const hasAuthCookie = Boolean(req.cookies.get(AUTH_COOKIE_NAME)?.value)
+   const hasAuthCookie = Boolean(req.cookies.get(ADMIN_AUTH_COOKIE_NAME)?.value)
 
    // Корень: / -> sign-in или users-list
    if (pathname === '/') {
