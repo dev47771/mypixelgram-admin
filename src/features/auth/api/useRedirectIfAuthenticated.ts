@@ -18,27 +18,27 @@ export function useRedirectIfAuthenticated(options?: Options) {
    const router = useRouter()
 
    useEffect(() => {
-      let cancelled = false
+      let mounted = true
 
-      const redirectIfAuthenticated = async () => {
+      const redirectIfSessionExists = async () => {
          try {
             const res = await fetch('/api/auth/session', { credentials: 'include' })
-            if (!res.ok || cancelled) return
-            const data = (await res.json()) as { authenticated?: boolean }
-            if (data.authenticated) router.replace(redirectTo)
+            if (!mounted || !res.ok) return
+            const { authenticated } = (await res.json()) as { authenticated?: boolean }
+            if (authenticated) router.replace(redirectTo)
          } catch {
-            /* ignore */
+            // сеть / парсинг — остаёмся на странице
          }
       }
 
-      void redirectIfAuthenticated()
+      void redirectIfSessionExists()
 
       const onPageShow = (e: PageTransitionEvent) => {
-         if (e.persisted) void redirectIfAuthenticated()
+         if (e.persisted) void redirectIfSessionExists()
       }
       window.addEventListener('pageshow', onPageShow)
       return () => {
-         cancelled = true
+         mounted = false
          window.removeEventListener('pageshow', onPageShow)
       }
    }, [router, redirectTo])
