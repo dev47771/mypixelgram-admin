@@ -1,50 +1,18 @@
-/* import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-
-export function proxy(request: NextRequest) {
-   const token = request.cookies.get('adminAccessToken')?.value
-   const { pathname } = request.nextUrl
-
-   const isAuthPage = pathname === '/sign-in'
-   const isPrivatePage = pathname.startsWith('/users-list')
-
-   if (pathname === '/') {
-      return NextResponse.redirect(new URL(token ? '/users-list' : '/sign-in', request.url))
-   }
-
-   if (!token && isPrivatePage) {
-      return NextResponse.redirect(new URL('/sign-in', request.url))
-   }
-
-   if (token && isAuthPage) {
-      return NextResponse.redirect(new URL('/users-list', request.url))
-   }
-
-   return NextResponse.next()
-}
-
-export const config = {
-   matcher: ['/', '/sign-in', '/users-list/:path*'],
-} */
-
 import { NextRequest, NextResponse } from 'next/server'
 import { ADMIN_AUTH_COOKIE_NAME } from '@/shared/constants/auth'
-
-const PRIVATE_PATHS = ['/users-list', '/statistics', '/payments-list', '/posts-list']
+import { ROUTES } from './shared/constants'
 
 export function middleware(req: NextRequest) {
    const { pathname } = req.nextUrl
    const hasAuthCookie = Boolean(req.cookies.get(ADMIN_AUTH_COOKIE_NAME)?.value)
 
-   // Корень: / -> sign-in или users-list
    if (pathname === '/') {
       const url = req.nextUrl.clone()
       url.pathname = hasAuthCookie ? '/users-list' : '/sign-in'
       return NextResponse.redirect(url)
    }
 
-   // Неавторизованный на приватный роут -> sign-in
-   const isPrivateRoute = PRIVATE_PATHS.some(
+   const isPrivateRoute = Object.values(ROUTES.private).some(
       path => pathname === path || pathname.startsWith(`${path}/`)
    )
 
@@ -54,7 +22,6 @@ export function middleware(req: NextRequest) {
       return NextResponse.redirect(url)
    }
 
-   // (опционально) Авторизованный не должен открывать sign-in
    if (pathname === '/sign-in' && hasAuthCookie) {
       const url = req.nextUrl.clone()
       url.pathname = '/users-list'

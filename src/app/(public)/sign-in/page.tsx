@@ -1,10 +1,10 @@
 'use client'
 
-import { PageContainer } from '@/shared/components/PageContainer'
-import { useRouter } from 'next/navigation'
-import { ROUTES } from '@/shared/constants'
+import { AdminLoginInput, useLogin } from '@/features/auth/api'
 import { SignInForm } from '@/features/auth/ui/SignInForm'
-import { AdminLoginInput, useLogin, useRedirectIfAuthenticated } from '@/features/auth/api'
+import { PageContainer } from '@/shared/components/PageContainer'
+import { ROUTES } from '@/shared/constants'
+import { useRouter } from 'next/navigation'
 
 type GraphQLError = {
    errors?: Array<{
@@ -17,8 +17,6 @@ type GraphQLError = {
 export default function SignInPage() {
    const { login, loading, error } = useLogin()
    const router = useRouter()
-
-   useRedirectIfAuthenticated()
 
    const handleLogin = async (data: AdminLoginInput) => {
       await login(data.email, data.password)
