@@ -6,3 +6,11 @@ export type AdminLoginInput = {
 export type AdminLoginResponse = {
    adminLogin: boolean
 }
+
+export type AdminCheckerResponse = {
+   AdminChecker: boolean
+}
+
+export type AdminLogoutResponse = {
+   adminLogout: boolean
+}

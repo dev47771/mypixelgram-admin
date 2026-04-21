@@ -5,3 +5,15 @@ export const ADMIN_LOGIN = gql`
       adminLogin(input: $input)
    }
 `
+
+export const ADMIN_CHECKER = gql`
+   query AdminChecker {
+      AdminChecker
+   }
+`
+
+export const ADMIN_LOGOUT = gql`
+   mutation AdminLogout {
+      adminLogout
+   }
+`
