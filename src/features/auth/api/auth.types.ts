@@ -4,7 +4,5 @@ export type AdminLoginInput = {
 }
 
 export type AdminLoginResponse = {
-   adminLogin: {
-      accessToken: string
-   }
+   adminLogin: boolean
 }
