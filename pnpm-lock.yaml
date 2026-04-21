@@ -12,8 +12,8 @@ importers:
         specifier: ^4.1.6
         version: 4.1.6(graphql@16.13.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(rxjs@7.8.2)
       '@filippsm/ui-kit-mypixelgram-demo':
-        specifier: ^1.0.5
-        version: 1.0.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^1.0.9
+        version: 1.0.9(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -169,8 +169,8 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@filippsm/ui-kit-mypixelgram-demo@1.0.5':
-    resolution: {integrity: sha512-2W98eLVJxZwmTOPShufRsWY3YinrU8Kce48zVKmZqeNkyEIqImrF098wUk6z9hKQCC4k6YUOFuKPo/E5ur27Zg==}
+  '@filippsm/ui-kit-mypixelgram-demo@1.0.9':
+    resolution: {integrity: sha512-5M/vv3zrnC6EnULT7gpio8eHX6xGpr3D9l1sFp03OdIQn3Un5WVfT6WYKyAkplhgzIU5hB08YjHD/WvxN3WAuw==}
     peerDependencies:
       react: ^19
       react-dom: ^19
@@ -3027,7 +3027,7 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@filippsm/ui-kit-mypixelgram-demo@1.0.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@filippsm/ui-kit-mypixelgram-demo@1.0.9(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@radix-ui/react-checkbox': 1.3.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@radix-ui/react-dialog': 1.1.15(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
