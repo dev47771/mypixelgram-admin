@@ -14,7 +14,7 @@
    },
    "dependencies": {
       "@apollo/client": "^4.1.6",
-      "@filippsm/ui-kit-mypixelgram-demo": "^1.0.9",
+      "@filippsm/ui-kit-mypixelgram-demo": "^1.0.10",
       "clsx": "^2.1.1",
       "date-fns": "^4.1.0",
       "graphql": "^16.13.1",
