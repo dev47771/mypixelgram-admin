@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from 'next/server'
 import { ADMIN_AUTH_COOKIE_NAME } from '@/shared/constants/auth'
 import { ROUTES } from './shared/constants'
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
    const { pathname } = req.nextUrl
    const hasAuthCookie = Boolean(req.cookies.get(ADMIN_AUTH_COOKIE_NAME)?.value)
 
    if (pathname === '/') {
       const url = req.nextUrl.clone()
-      url.pathname = hasAuthCookie ? '/users-list' : '/sign-in'
+      url.pathname = hasAuthCookie ? ROUTES.private.usersList : ROUTES.public.signIn
       return NextResponse.redirect(url)
    }
 
@@ -18,13 +18,13 @@ export function middleware(req: NextRequest) {
 
    if (isPrivateRoute && !hasAuthCookie) {
       const url = req.nextUrl.clone()
-      url.pathname = '/sign-in'
+      url.pathname = ROUTES.public.signIn
       return NextResponse.redirect(url)
    }
 
-   if (pathname === '/sign-in' && hasAuthCookie) {
+   if (pathname === ROUTES.public.signIn && hasAuthCookie) {
       const url = req.nextUrl.clone()
-      url.pathname = '/users-list'
+      url.pathname = ROUTES.private.usersList
       return NextResponse.redirect(url)
    }
 
