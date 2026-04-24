@@ -1,6 +1,6 @@
 'use client'
 
-import { AdminLoginInput, useLogin } from '@/features/auth/api'
+import { AdminLoginInput, useLogin } from '@/features/auth'
 import { SignInForm } from '@/features/auth/ui/SignInForm'
 import { PageContainer } from '@/shared/components/PageContainer'
 import { ROUTES } from '@/shared/constants'

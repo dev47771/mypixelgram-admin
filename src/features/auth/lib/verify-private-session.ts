@@ -20,7 +20,8 @@ export async function verifyPrivateSession(): Promise<boolean> {
    const { data } = await res.json()
 
    if (!data?.AdminChecker) {
-      ;(await cookies()).delete(ADMIN_AUTH_COOKIE_NAME)
+      const cookieStore = await cookies()
+      cookieStore.delete(ADMIN_AUTH_COOKIE_NAME)
       return redirect(ROUTES.public.signIn)
    }
 

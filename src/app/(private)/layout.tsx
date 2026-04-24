@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
-import { verifyPrivateSession } from '@/features/auth/lib/verify-privat-session'
-import { PrivateRouteRefresh } from '@/features/auth/ui/PrivateRouteRefresh'
+import { PrivateRouteRefresh } from '@/features/auth'
+import { verifyPrivateSession } from '@/features/auth/lib/verify-private-session'
 
 export default async function PrivateLayout({ children }: { children: ReactNode }) {
    await verifyPrivateSession()
