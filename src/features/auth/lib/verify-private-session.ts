@@ -1,31 +1,30 @@
 import 'server-only'
 
-import { cookies, headers } from 'next/headers'
-import { redirect } from 'next/navigation'
 import { print } from 'graphql'
+import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 import { ADMIN_CHECKER } from '@/features/auth/api/auth.operations'
-import { ADMIN_AUTH_COOKIE_NAME, ROUTES } from '@/shared/constants'
+
+const SESSION_EXPIRED_ROUTE = '/api/auth/session-expired'
 
 export async function verifyPrivateSession(): Promise<boolean> {
    const GRAPHQL_URL = process.env.NEXT_PUBLIC_GRAPHQL_URL
-   if (!GRAPHQL_URL) throw new Error('NEXT_PUBLIC_GRAPHQL_URL is not configured')
+   if (!GRAPHQL_URL) return redirect(SESSION_EXPIRED_ROUTE)
 
-   const cookie = (await headers()).get('cookie')
+   try {
+      const cookie = (await headers()).get('cookie')
+      const res = await fetch(GRAPHQL_URL, {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json', Cookie: cookie ?? '' },
+         body: JSON.stringify({ query: print(ADMIN_CHECKER) }),
+      })
+      const { data } = await res.json()
 
-   const res = await fetch(GRAPHQL_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Cookie: cookie ?? '' },
-      body: JSON.stringify({ query: print(ADMIN_CHECKER) }),
-   })
-
-   const { data } = await res.json()
-
-   if (!data?.AdminChecker) {
-      const cookieStore = await cookies()
-      cookieStore.delete(ADMIN_AUTH_COOKIE_NAME)
-      return redirect(ROUTES.public.signIn)
+      if (res.ok && data?.AdminChecker) return true
+   } catch (e) {
+      console.error(e)
    }
 
-   return true
+   return redirect(SESSION_EXPIRED_ROUTE)
 }
