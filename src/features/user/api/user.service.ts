@@ -19,13 +19,14 @@ type GetUsersListQuery = {
 type GetUsersListQueryVariables = {
    pageNumber?: number
    pageSize?: number
+   searchLoginTerm?: string
 }
 
 // type GetUsersListQueryVariables = Record<string, never> //для запроса без переменных
 
 export const GET_USERS_LIST: TypedDocumentNode<GetUsersListQuery, GetUsersListQueryVariables> = gql`
-   query GetUsersList($pageNumber: Float, $pageSize: Float) {
-      getUsers(pageNumber: $pageNumber, pageSize: $pageSize) {
+   query GetUsersList($pageNumber: Float, $pageSize: Float, $searchLoginTerm: String) {
+      getUsers(pageNumber: $pageNumber, pageSize: $pageSize, searchLoginTerm: $searchLoginTerm) {
          users {
             id
             login

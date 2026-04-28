@@ -22,9 +22,10 @@ const Page = () => {
    const [currentPage, setCurrentPage] = useState(START_CURRENT_PAGE)
    const [pageSize, setPageSize] = useState<PageSize>(START_PAGE_SIZE)
    const [selectValue, setSelectValue] = useState<string>('')
+   const [searchValue, setSearchValue] = useState<string>('')
 
    const { loading, data, refetch, error, networkStatus } = useQuery(GET_USERS_LIST, {
-      variables: { pageSize, pageNumber: currentPage },
+      variables: { pageSize, pageNumber: currentPage, searchLoginTerm: searchValue },
       notifyOnNetworkStatusChange: true,
    })
 
@@ -52,7 +53,13 @@ const Page = () => {
    return (
       <>
          <div className={'flex items-center gap-6 self-stretch'}>
-            <SearchInput onSearch={() => {}} className={'max-w-[644px] flex-1'} />
+            <SearchInput
+               onSearch={value => {
+                  setSearchValue(value)
+                  setCurrentPage(1)
+               }}
+               className={'max-w-[644px] flex-1'}
+            />
             <Select value={selectValue} onValueChange={setSelectValue}>
                <SelectTrigger className="w-[220px]">
                   <SelectValue placeholder="Not selected" />
