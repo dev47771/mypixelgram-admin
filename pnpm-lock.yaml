@@ -10,16 +10,19 @@ importers:
     dependencies:
       '@apollo/client':
         specifier: ^4.1.7
-        version: 4.1.7(graphql@16.13.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(rxjs@7.8.2)
+        version: 4.1.9(graphql@16.13.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(rxjs@7.8.2)
       '@filippsm/ui-kit-mypixelgram-demo':
-        specifier: ^1.0.8
-        version: 1.0.8(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^1.0.10
+        version: 1.0.10(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@hookform/resolvers':
         specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.72.1(react@19.2.3))
+        version: 5.2.2(react-hook-form@7.74.0(react@19.2.3))
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       graphql:
         specifier: ^16.13.1
         version: 16.13.1
@@ -34,7 +37,7 @@ importers:
         version: 19.2.3(react@19.2.3)
       react-hook-form:
         specifier: ^7.72.1
-        version: 7.72.1(react@19.2.3)
+        version: 7.74.0(react@19.2.3)
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.5.0
@@ -109,8 +112,8 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@apollo/client@4.1.7':
-    resolution: {integrity: sha512-CE1Pe22vszRBMGrBOovIXzTa5infy1kwF0kWX2JBLcGFXoOPBOAo9zoM++tuSRZr8PscWJyv2ka2FKoyEquEHw==}
+  '@apollo/client@4.1.9':
+    resolution: {integrity: sha512-qfpkQD51tdU/7iAR6aLb4w9o/L7I475DluWHRb61U/3Q0AH29nNOxOBHjBbWDdf16ncPOoQuxne1sEs2NjqBFw==}
     peerDependencies:
       graphql: ^16.0.0
       graphql-ws: ^5.5.5 || ^6.0.3
@@ -175,8 +178,8 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@filippsm/ui-kit-mypixelgram-demo@1.0.8':
-    resolution: {integrity: sha512-rIJURroSn9lwMD4IbJVKPvwR6lhGh/Or1mCIx+oIPZSItR4iRtAS4wIOIn97FQCscTvc1dZxKiHP4uctXpBq1Q==}
+  '@filippsm/ui-kit-mypixelgram-demo@1.0.10':
+    resolution: {integrity: sha512-u3bhiDqjD19i/Ygaf3RBHooGK/kS/6IMyNVye3Hu/RHSOweJ4XOv5QDNyhv01mNImoxD/l44wFDaG3lUcGUjWw==}
     peerDependencies:
       react: ^19
       react-dom: ^19
@@ -2581,8 +2584,8 @@ packages:
     peerDependencies:
       react: ^19.2.3
 
-  react-hook-form@7.72.1:
-    resolution: {integrity: sha512-RhwBoy2ygeVZje+C+bwJ8g0NjTdBmDlJvAUHTxRjTmSUKPYsKfMphkS2sgEMotsY03bP358yEYlnUeZy//D9Ig==}
+  react-hook-form@7.74.0:
+    resolution: {integrity: sha512-yR6wHr99p9wFv686jhRWVSFhUvDvNbdUf2dKlbno8/VKOCuoNobDGC6S+M2dua9A9Yo8vpcrp8assIYbsZCQ9g==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -2973,7 +2976,7 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@apollo/client@4.1.7(graphql@16.13.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(rxjs@7.8.2)':
+  '@apollo/client@4.1.9(graphql@16.13.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(rxjs@7.8.2)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.13.1)
       '@wry/caches': 1.0.1
@@ -3050,7 +3053,7 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@filippsm/ui-kit-mypixelgram-demo@1.0.8(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@filippsm/ui-kit-mypixelgram-demo@1.0.10(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@radix-ui/react-checkbox': 1.3.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@radix-ui/react-dialog': 1.1.15(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -3104,10 +3107,10 @@ snapshots:
     dependencies:
       graphql: 16.13.1
 
-  '@hookform/resolvers@5.2.2(react-hook-form@7.72.1(react@19.2.3))':
+  '@hookform/resolvers@5.2.2(react-hook-form@7.74.0(react@19.2.3))':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.72.1(react@19.2.3)
+      react-hook-form: 7.74.0(react@19.2.3)
 
   '@humanfs/core@0.19.1': {}
 
@@ -5577,7 +5580,7 @@ snapshots:
       react: 19.2.3
       scheduler: 0.27.0
 
-  react-hook-form@7.72.1(react@19.2.3):
+  react-hook-form@7.74.0(react@19.2.3):
     dependencies:
       react: 19.2.3
 
