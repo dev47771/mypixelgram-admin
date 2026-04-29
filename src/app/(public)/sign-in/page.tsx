@@ -6,6 +6,7 @@ import { SignInForm } from '@/features/auth/ui/SignInForm'
 import { PageContainer } from '@/shared/components/PageContainer'
 import { ROUTES } from '@/shared/constants'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { alert } from '@filippsm/ui-kit-mypixelgram-demo'
 
 type GraphQLError = {
    errors?: Array<{
@@ -23,7 +24,7 @@ export default function SignInPage() {
 
    useEffect(() => {
       if (searchParams.get('error') === 'server_error') {
-         alert('Server error')
+         alert.error('Server error')
 
          const params = new URLSearchParams(searchParams.toString())
          params.delete('error')

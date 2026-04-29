@@ -13,6 +13,6 @@ export const errorLink = new ErrorLink(({ error }) => {
 
    // network error (нет интернета / сервер недоступен)
    if (error) {
-      alert.error('Check your internet connection.')
+      alert.error('Network or Server Error. Check your internet connection.')
    }
 })
