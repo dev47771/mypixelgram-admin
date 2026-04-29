@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation'
 import { ADMIN_CHECKER } from '@/features/auth/api/auth.operations'
 
 const SESSION_EXPIRED_ROUTE = '/api/auth/session-expired'
+const SESSION_EXPIRED_SERVER_ERROR_ROUTE = `${SESSION_EXPIRED_ROUTE}?error=server_error`
 
 export async function verifyPrivateSession(): Promise<boolean> {
    const GRAPHQL_URL = process.env.NEXT_PUBLIC_GRAPHQL_URL
@@ -24,6 +25,7 @@ export async function verifyPrivateSession(): Promise<boolean> {
       if (res.ok && data?.AdminChecker) return true
    } catch (e) {
       console.error(e)
+      return redirect(SESSION_EXPIRED_SERVER_ERROR_ROUTE)
    }
 
    return redirect(SESSION_EXPIRED_ROUTE)

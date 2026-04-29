@@ -1,10 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
 import { AdminLoginInput, useLogin } from '@/features/auth'
 import { SignInForm } from '@/features/auth/ui/SignInForm'
 import { PageContainer } from '@/shared/components/PageContainer'
 import { ROUTES } from '@/shared/constants'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 type GraphQLError = {
    errors?: Array<{
@@ -17,6 +18,20 @@ type GraphQLError = {
 export default function SignInPage() {
    const { login, loading, error } = useLogin()
    const router = useRouter()
+   const searchParams = useSearchParams()
+   const pathname = usePathname()
+
+   useEffect(() => {
+      if (searchParams.get('error') === 'server_error') {
+         alert('Server error')
+
+         const params = new URLSearchParams(searchParams.toString())
+         params.delete('error')
+
+         const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname
+         router.replace(nextUrl)
+      }
+   }, [searchParams, pathname, router])
 
    const handleLogin = async (data: AdminLoginInput) => {
       await login(data.email, data.password)
