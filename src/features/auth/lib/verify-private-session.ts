@@ -5,8 +5,9 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { ADMIN_CHECKER } from '@/features/auth/api/auth.operations'
+import { API_ROUTES } from '@/shared/constants'
 
-const SESSION_EXPIRED_ROUTE = '/api/auth/session-expired'
+const SESSION_EXPIRED_ROUTE = API_ROUTES.auth.sessionExpired
 const SESSION_EXPIRED_SERVER_ERROR_ROUTE = `${SESSION_EXPIRED_ROUTE}?error=server_error`
 
 export async function verifyPrivateSession(): Promise<boolean> {

@@ -10,3 +10,9 @@ export const ROUTES = {
       postsList: '/posts-list',
    },
 } as const
+
+export const API_ROUTES = {
+   auth: {
+      sessionExpired: '/api/auth/session-expired',
+   },
+} as const
