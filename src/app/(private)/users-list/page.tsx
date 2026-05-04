@@ -16,15 +16,23 @@ import { useQuery } from '@apollo/client/react'
 import { PAGE_SIZE_OPTIONS, type PageSize, START_CURRENT_PAGE, START_PAGE_SIZE } from './pagination'
 import { NetworkStatus } from '@apollo/client'
 import { UsersTable } from '@/widgets/UsersTable'
-import { GET_USERS_LIST } from '@/features/user/api'
+import { GET_USERS_LIST, type SortDirection, type SortField } from '@/features/user/api'
 
 const Page = () => {
    const [currentPage, setCurrentPage] = useState(START_CURRENT_PAGE)
    const [pageSize, setPageSize] = useState<PageSize>(START_PAGE_SIZE)
    const [selectValue, setSelectValue] = useState<string>('')
 
+   const [sortBy, setSortBy] = useState<SortField>('CREATED_AT')
+   const [sortDirection, setSortDirection] = useState<SortDirection>('DESC')
+
    const { loading, data, refetch, error, networkStatus } = useQuery(GET_USERS_LIST, {
-      variables: { pageSize, pageNumber: currentPage },
+      variables: {
+         pageSize,
+         pageNumber: currentPage,
+         sortBy,
+         sortDirection,
+      },
       notifyOnNetworkStatusChange: true,
    })
 
@@ -37,6 +45,12 @@ const Page = () => {
 
    if (isInitialLoading) {
       return <Loader />
+   }
+
+   const onSortHandler = (field: SortField) => {
+      setCurrentPage(1)
+      setSortBy(field)
+      setSortDirection(prev => (prev === 'ASC' ? 'DESC' : 'ASC'))
    }
 
    if (error)
@@ -72,7 +86,11 @@ const Page = () => {
                   Users not found
                </Typography>
             ) : (
-               <UsersTable users={users} />
+               <UsersTable
+                  users={users}
+                  onSortByDate={() => onSortHandler('CREATED_AT')}
+                  onSortByLogin={() => onSortHandler('LOGIN')}
+               />
             )}
 
             {totalCount > 0 && (
