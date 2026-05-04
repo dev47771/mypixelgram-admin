@@ -1,0 +1,6 @@
+export { PROFILE_TAB_VALUES } from './constans/profileTabValues'
+export { type ProfileTabType } from './constans/profileTabValues'
+export { UploadedFilesTabPage } from './ui/UploadedFilesTabPage/UploadedFilesTabPage'
+export { PaymentsTabPage } from './ui/PaymentsTabPage/PaymentsTabPage'
+export { FollowersTabPage } from './ui/FollowersTabPage/FollowersTabPage'
+export { FollowingTabPage } from './ui/FollowingTabPage/FollowingTabPage'
