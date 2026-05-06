@@ -15,9 +15,10 @@
    },
    "dependencies": {
       "@apollo/client": "^4.1.7",
-      "@filippsm/ui-kit-mypixelgram-demo": "^1.0.8",
+      "@filippsm/ui-kit-mypixelgram-demo": "^1.0.10",
       "@hookform/resolvers": "^5.2.2",
       "clsx": "^2.1.1",
+      "date-fns": "^4.1.0",
       "graphql": "^16.13.1",
       "next": "16.1.6",
       "react": "19.2.3",
