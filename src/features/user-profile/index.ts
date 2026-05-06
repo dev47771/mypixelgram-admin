@@ -4,3 +4,7 @@ export { UploadedFilesTabPage } from './ui/UploadedFilesTabPage/UploadedFilesTab
 export { PaymentsTabPage } from './ui/PaymentsTabPage/PaymentsTabPage'
 export { FollowersTabPage } from './ui/FollowersTabPage/FollowersTabPage'
 export { FollowingTabPage } from './ui/FollowingTabPage/FollowingTabPage'
+export { PAGE_SIZE_OPTIONS } from './constans/pageSizeOptions'
+export { type PageSize } from './constans/pageSizeOptions'
+export { START_CURRENT_PAGE } from './constans/pageSizeOptions'
+export { START_PAGE_SIZE } from './constans/pageSizeOptions'
