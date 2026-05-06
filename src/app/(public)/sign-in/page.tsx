@@ -11,7 +11,7 @@ import { alert } from '@filippsm/ui-kit-mypixelgram-demo'
 type GraphQLError = {
    errors?: Array<{
       extensions?: {
-         statusCode?: number
+         code?: number
       }
    }>
 }
@@ -39,7 +39,7 @@ export default function SignInPage() {
       router.replace(ROUTES.private.usersList)
    }
 
-   const statusCode = (error as GraphQLError)?.errors?.[0]?.extensions?.statusCode
+   const statusCode = (error as GraphQLError)?.errors?.[0]?.extensions?.code
    const formErrors =
       statusCode === 401 ? [{ field: 'password', message: 'Invalid email or password' }] : undefined
 
