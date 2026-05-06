@@ -9,6 +9,7 @@ import { API_ROUTES } from '@/shared/constants'
 
 const SESSION_EXPIRED_ROUTE = API_ROUTES.auth.sessionExpired
 const SESSION_EXPIRED_SERVER_ERROR_ROUTE = `${SESSION_EXPIRED_ROUTE}?error=server_error`
+const SESSION_EXPIRED_UNAUTHORIZED_ROUTE = `${SESSION_EXPIRED_ROUTE}?error=unauthorized`
 
 export async function verifyPrivateSession(): Promise<boolean> {
    const GRAPHQL_URL = process.env.NEXT_PUBLIC_GRAPHQL_URL
@@ -29,5 +30,5 @@ export async function verifyPrivateSession(): Promise<boolean> {
       return redirect(SESSION_EXPIRED_SERVER_ERROR_ROUTE)
    }
 
-   return redirect(SESSION_EXPIRED_ROUTE)
+   return redirect(SESSION_EXPIRED_UNAUTHORIZED_ROUTE)
 }

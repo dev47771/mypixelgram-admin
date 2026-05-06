@@ -6,6 +6,9 @@ import { ADMIN_AUTH_COOKIE_NAME } from '@/shared/constants/auth'
 export async function GET(req: Request) {
    const url = new URL(req.url)
    const redirectUrl = new URL(ROUTES.public.signIn, url.origin)
+   url.searchParams.forEach((value, key) => {
+      redirectUrl.searchParams.set(key, value)
+   })
    const response = NextResponse.redirect(redirectUrl)
 
    response.cookies.set(ADMIN_AUTH_COOKIE_NAME, '', {

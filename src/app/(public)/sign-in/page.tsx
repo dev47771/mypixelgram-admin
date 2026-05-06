@@ -23,15 +23,20 @@ export default function SignInPage() {
    const pathname = usePathname()
 
    useEffect(() => {
-      if (searchParams.get('error') === 'server_error') {
-         alert.error('Server error')
+      const errorParam = searchParams.get('error')
+      let message: string | null = null
+      if (errorParam === 'server_error') message = 'Server error'
+      else if (errorParam === 'unauthorized') message = 'unauthorized.'
 
-         const params = new URLSearchParams(searchParams.toString())
-         params.delete('error')
+      if (!message) return
 
-         const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname
-         router.replace(nextUrl)
-      }
+      alert.error(message)
+
+      const params = new URLSearchParams(searchParams.toString())
+      params.delete('error')
+
+      const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname
+      router.replace(nextUrl)
    }, [searchParams, pathname, router])
 
    const handleLogin = async (data: AdminLoginInput) => {
