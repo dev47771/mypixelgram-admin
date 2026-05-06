@@ -16,28 +16,42 @@ type GraphQLError = {
    }>
 }
 
+/** Strict Mode mounts twice with the same query; skip the second toast. Reset when `error` disappears from URL. */
+let dedupedSignInErrorQueryKey: string | null = null
+
 export default function SignInPage() {
    const { login, loading, error } = useLogin()
    const router = useRouter()
    const searchParams = useSearchParams()
    const pathname = usePathname()
+   const queryString = searchParams.toString()
+   const errorParam = searchParams.get('error')
 
    useEffect(() => {
-      const errorParam = searchParams.get('error')
+      if (!errorParam) {
+         dedupedSignInErrorQueryKey = null
+         return
+      }
+
       let message: string | null = null
       if (errorParam === 'server_error') message = 'Server error'
       else if (errorParam === 'unauthorized') message = 'unauthorized.'
 
       if (!message) return
 
+      const queryKey = `${pathname}?${queryString}`
+      if (dedupedSignInErrorQueryKey === queryKey) return
+
+      dedupedSignInErrorQueryKey = queryKey
+
       alert.error(message)
 
-      const params = new URLSearchParams(searchParams.toString())
+      const params = new URLSearchParams(queryString)
       params.delete('error')
 
       const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname
       router.replace(nextUrl)
-   }, [searchParams, pathname, router])
+   }, [errorParam, queryString, pathname, router])
 
    const handleLogin = async (data: AdminLoginInput) => {
       await login(data.email, data.password)
