@@ -1,9 +1,18 @@
+'use client'
+
 import { GET_USER_PROFILE } from '@/features/user-profile'
 import { ROUTES } from '@/shared/constants'
-import { client } from '@/shared/api'
 import { dateFormatter } from '@/shared/utils/dateFormatter'
 import { TabsBlock } from '@/widgets/TabsBlock'
-import { ArrowBackIcon, Avatar } from '@filippsm/ui-kit-mypixelgram-demo'
+import {
+   ArrowBackIcon,
+   Avatar,
+   Button,
+   Loader,
+   Typography,
+} from '@filippsm/ui-kit-mypixelgram-demo'
+import { useQuery } from '@apollo/client/react'
+import { NetworkStatus } from '@apollo/client'
 import Link from 'next/link'
 
 type PageProps = {
@@ -11,11 +20,29 @@ type PageProps = {
    initialPart: string
 }
 
-const ProfileByLoginPageClient = async ({ login, initialPart }: PageProps) => {
-   const { data } = await client.query({
-      query: GET_USER_PROFILE,
+const ProfileByLoginPageClient = ({ login, initialPart }: PageProps) => {
+   const { loading, data, error, refetch, networkStatus } = useQuery(GET_USER_PROFILE, {
       variables: { searchLoginTerm: login },
+      skip: !login,
+      notifyOnNetworkStatusChange: true,
    })
+
+   const isInitialLoading = loading && networkStatus === NetworkStatus.loading && !data
+
+   if (isInitialLoading) {
+      return <Loader />
+   }
+
+   if (error) {
+      return (
+         <div className="flex flex-col items-center">
+            <Typography variant="h1" className="my-6">
+               Something went wrong
+            </Typography>
+            <Button onClick={() => refetch()}>Try again</Button>
+         </div>
+      )
+   }
 
    const apiUser = data?.getUsers.users[0]
    const profile = apiUser?.profile
