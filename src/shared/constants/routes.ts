@@ -13,6 +13,9 @@ export const ROUTES = {
    },
    informations: {
       base: '/profile',
-      create: (part: ProfileTabType) => `/profile?part=${part}`,
+      create: (part: ProfileTabType, login?: string) =>
+         login !== undefined && login !== ''
+            ? `/profile/${encodeURIComponent(login)}?part=${part}`
+            : `/profile?part=${part}`,
    },
 } as const

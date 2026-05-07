@@ -14,13 +14,17 @@ import { useRouter } from 'next/navigation'
 
 interface TabsBlockProps {
    initialPart: string
+   /** When set (e.g. on `/profile/[login]`), tab changes stay on that user's profile route. */
+   profileLogin?: string
 }
 
-export function TabsBlock({ initialPart }: TabsBlockProps) {
+export function TabsBlock({ initialPart, profileLogin }: TabsBlockProps) {
    const router = useRouter()
 
    const handleTabChange = (value: string) => {
-      router.push(ROUTES.informations.create(value as ProfileTabType), { scroll: false })
+      router.push(ROUTES.informations.create(value as ProfileTabType, profileLogin), {
+         scroll: false,
+      })
    }
 
    return (

@@ -3,6 +3,7 @@ import { gql, type TypedDocumentNode } from '@apollo/client'
 type GetUserProfileQuery = {
    getUsers: {
       users: {
+         id: string
          login: string
          createdAt: string
          profile: {
@@ -15,15 +16,15 @@ type GetUserProfileQuery = {
 }
 
 type GetUserProfileQueryVariables = {
-   userId: string
+   searchLoginTerm: string
 }
 
 export const GET_USER_PROFILE: TypedDocumentNode<
    GetUserProfileQuery,
    GetUserProfileQueryVariables
 > = gql`
-   query GetUserProfile($userId: String!) {
-      getUsers(userId: $userId) {
+   query GetUserProfile($searchLoginTerm: String!) {
+      getUsers(searchLoginTerm: $searchLoginTerm) {
          users {
             id
             login
