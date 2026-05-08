@@ -40,7 +40,7 @@ export function TabsBlock({ initialPart, profileLogin }: TabsBlockProps) {
                <UploadedFilesTabPage />
             </TabsContent>
             <TabsContent value={PROFILE_TAB_VALUES.payments}>
-               <PaymentsTabPage />
+               <PaymentsTabPage profileLogin={profileLogin ?? ''} />
             </TabsContent>
             <TabsContent value={PROFILE_TAB_VALUES.followers}>
                <FollowersTabPage />

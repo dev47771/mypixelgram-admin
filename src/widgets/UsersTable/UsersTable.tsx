@@ -53,7 +53,7 @@ export const UsersTable = ({ users = [] }: Props) => {
                   </TableCell>
                   <TableCell className={paddingClass}>
                      <div className="flex justify-end">
-                        <UserActionsMenu />
+                        <UserActionsMenu login={user.login} />
                      </div>
                   </TableCell>
                </TableRow>

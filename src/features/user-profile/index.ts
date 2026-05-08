@@ -8,4 +8,15 @@ export { PAGE_SIZE_OPTIONS } from './constans/pageSizeOptions'
 export { type PageSize } from './constans/pageSizeOptions'
 export { START_CURRENT_PAGE } from './constans/pageSizeOptions'
 export { START_PAGE_SIZE } from './constans/pageSizeOptions'
-export { GET_USER_PROFILE } from './api/userProfile.service'
+export {
+   GET_USER_PAYMENTS,
+   GET_USER_PROFILE,
+   useUserPayments,
+   useUserProfile,
+   type GetUserPaymentsQuery,
+   type GetUserPaymentsQueryVariables,
+   type GetUserProfileQuery,
+   type GetUserProfileQueryVariables,
+   type PaymentsPagination,
+   type UserPayment,
+} from './api'

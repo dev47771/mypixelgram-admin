@@ -1,6 +1,6 @@
 'use client'
 
-import { GET_USER_PROFILE } from '@/features/user-profile'
+import { useUserProfile } from '@/features/user-profile'
 import { ROUTES } from '@/shared/constants'
 import { dateFormatter } from '@/shared/utils/dateFormatter'
 import { TabsBlock } from '@/widgets/TabsBlock'
@@ -11,7 +11,6 @@ import {
    Loader,
    Typography,
 } from '@filippsm/ui-kit-mypixelgram-demo'
-import { useQuery } from '@apollo/client/react'
 import { NetworkStatus } from '@apollo/client'
 import Link from 'next/link'
 
@@ -21,11 +20,7 @@ type PageProps = {
 }
 
 const ProfileByLoginPageClient = ({ login, initialPart }: PageProps) => {
-   const { loading, data, error, refetch, networkStatus } = useQuery(GET_USER_PROFILE, {
-      variables: { searchLoginTerm: login },
-      skip: !login,
-      notifyOnNetworkStatusChange: true,
-   })
+   const { loading, data, error, refetch, networkStatus } = useUserProfile(login)
 
    const isInitialLoading = loading && networkStatus === NetworkStatus.loading && !data
 

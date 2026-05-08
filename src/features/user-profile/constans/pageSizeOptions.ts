@@ -1,10 +1,10 @@
 export const PAGE_SIZE_OPTIONS = [
+   { label: '8', value: '8' },
    { label: '10', value: '10' },
-   { label: '20', value: '20' },
    { label: '50', value: '50' },
 ] as const
 
-//type PageSize = 10 | 20 | 50 in mumbers
+//type PageSize = 8 | 10 | 50 in mumbers
 export type PageSize =
    (typeof PAGE_SIZE_OPTIONS)[number]['value'] extends `${infer N extends number}` ? N : never
 

@@ -1,6 +1,5 @@
 'use client'
 
-import { ROUTES } from '@/shared/constants'
 import { USER_MENU_ITEMS } from '@/widgets/UsersTable/config'
 import {
    DropDownMenu,
@@ -11,12 +10,16 @@ import {
 } from '@filippsm/ui-kit-mypixelgram-demo'
 import { useRouter } from 'next/navigation'
 
-export const UserActionsMenu = () => {
+type Props = {
+   login: string
+}
+
+export const UserActionsMenu = ({ login }: Props) => {
    const router = useRouter()
 
    const handleSelect = (action: string) => {
       if (action === 'more') {
-         router.push(ROUTES.informations.base)
+         router.push(`/profile/${login}`)
       }
    }
 
