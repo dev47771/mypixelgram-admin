@@ -43,10 +43,10 @@ export function TabsBlock({ initialPart, profileLogin }: TabsBlockProps) {
                <PaymentsTabPage profileLogin={profileLogin ?? ''} />
             </TabsContent>
             <TabsContent value={PROFILE_TAB_VALUES.followers}>
-               <FollowersTabPage />
+               <FollowersTabPage profileLogin={profileLogin ?? ''} />
             </TabsContent>
             <TabsContent value={PROFILE_TAB_VALUES.following}>
-               <FollowingTabPage />
+               <FollowingTabPage profileLogin={profileLogin ?? ''} />
             </TabsContent>
          </Tabs>
       </div>

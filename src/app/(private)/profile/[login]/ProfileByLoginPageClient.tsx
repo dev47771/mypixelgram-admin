@@ -62,9 +62,15 @@ const ProfileByLoginPageClient = ({ login, initialPart }: PageProps) => {
             <Avatar size="md" src={avatar} alt="user avatar" />
             <div className="flex min-w-0 flex-col gap-1">
                <p className="text-xxl leading-l font-bold">{displayName}</p>
-               <span className="font-regular text-m leading-m text-light-100 underline">
+               {/* <span className="font-regular text-m leading-m text-light-100 underline">
                   {login}
-               </span>
+               </span> */}
+               <Link
+                  href={`/profile/${encodeURIComponent(login)}`}
+                  className="font-regular text-m leading-m text-light-100 underline"
+               >
+                  {login}
+               </Link>
             </div>
          </div>
 
