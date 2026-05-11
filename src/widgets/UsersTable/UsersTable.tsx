@@ -10,14 +10,18 @@ import type { User } from '@/entities/user/model'
 import { dateFormatter } from '@/shared/utils'
 import { UserActionsMenu } from './UserActionsMenu'
 import Link from 'next/link'
+import { SortIcon } from '@/shared/icons'
+import { cn } from '@/shared/lib'
 
 type Props = {
    users?: User[]
+   onSortByDate: () => void
+   onSortByLogin: () => void
 }
 
 const paddingClass = 'py-2 px-6'
 
-export const UsersTable = ({ users = [] }: Props) => {
+export const UsersTable = ({ users = [], onSortByDate, onSortByLogin }: Props) => {
    return (
       <Table className="mt-6 mb-9 table-fixed">
          {/*<colgroup>*/}
@@ -31,9 +35,14 @@ export const UsersTable = ({ users = [] }: Props) => {
          <TableHead>
             <TableRow>
                <TableHeadCell className={paddingClass}>User ID</TableHeadCell>
-               <TableHeadCell className={paddingClass}>Profile link</TableHeadCell>
+               <TableHeadCell className={cn(paddingClass, 'flex items-center gap-1.5')}>
+                  Profile link
+                  <SortIcon onClick={onSortByLogin} />
+               </TableHeadCell>
                <TableHeadCell className={paddingClass}>Username</TableHeadCell>
-               <TableHeadCell className={paddingClass}>Date added</TableHeadCell>
+               <TableHeadCell className={cn(paddingClass, 'flex items-center gap-1.5')}>
+                  Date added <SortIcon onClick={onSortByDate} />
+               </TableHeadCell>
                <TableHeadCell className={paddingClass}></TableHeadCell>
             </TableRow>
          </TableHead>

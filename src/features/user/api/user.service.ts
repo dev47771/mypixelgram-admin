@@ -16,17 +16,34 @@ type GetUsersListQuery = {
    }
 }
 
+export type SortField = 'ID' | 'LOGIN' | 'CREATED_AT'
+export type SortDirection = 'ASC' | 'DESC'
+
 type GetUsersListQueryVariables = {
    pageNumber?: number
    pageSize?: number
    searchLoginTerm?: string
+   sortBy?: SortField
+   sortDirection?: SortDirection
 }
 
 // type GetUsersListQueryVariables = Record<string, never> //для запроса без переменных
 
 export const GET_USERS_LIST: TypedDocumentNode<GetUsersListQuery, GetUsersListQueryVariables> = gql`
-   query GetUsersList($pageNumber: Float, $pageSize: Float, $searchLoginTerm: String) {
-      getUsers(pageNumber: $pageNumber, pageSize: $pageSize, searchLoginTerm: $searchLoginTerm) {
+   query GetUsersList(
+      $pageNumber: Float
+      $pageSize: Float
+      $sortBy: SortField
+      $sortDirection: SortDirection
+      $searchLoginTerm: String
+   ) {
+      getUsers(
+         pageNumber: $pageNumber
+         pageSize: $pageSize
+         sortBy: $sortBy
+         sortDirection: $sortDirection
+         searchLoginTerm: $searchLoginTerm
+      ) {
          users {
             id
             login
