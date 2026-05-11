@@ -6,9 +6,10 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signInSchema } from '../../model/schemas'
+
 import { ControlledInput } from '@/shared/lib/controlled'
 import { cn } from '@/shared/lib'
+import { signInSchema } from '../../model/schemas'
 
 type FormFieldError = { field: string; message: string }
 type FormTypes = z.infer<typeof signInSchema>

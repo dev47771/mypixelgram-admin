@@ -4,7 +4,13 @@ export type AdminLoginInput = {
 }
 
 export type AdminLoginResponse = {
-   adminLogin: {
-      accessToken: string
-   }
+   adminLogin: boolean
+}
+
+export type AdminCheckerResponse = {
+   AdminChecker: boolean
+}
+
+export type AdminLogoutResponse = {
+   adminLogout: boolean
 }
