@@ -22,6 +22,7 @@ const Page = () => {
    const [currentPage, setCurrentPage] = useState(START_CURRENT_PAGE)
    const [pageSize, setPageSize] = useState<PageSize>(START_PAGE_SIZE)
    const [selectValue, setSelectValue] = useState<string>('')
+   const [searchValue, setSearchValue] = useState<string>('')
 
    const [sortBy, setSortBy] = useState<SortField>('CREATED_AT')
    const [sortDirection, setSortDirection] = useState<SortDirection>('DESC')
@@ -30,6 +31,7 @@ const Page = () => {
       variables: {
          pageSize,
          pageNumber: currentPage,
+         searchLoginTerm: searchValue,
          sortBy,
          sortDirection,
       },
@@ -66,7 +68,13 @@ const Page = () => {
    return (
       <>
          <div className={'flex items-center gap-6 self-stretch'}>
-            <SearchInput onSearch={() => {}} className={'max-w-[644px] flex-1'} />
+            <SearchInput
+               onSearch={value => {
+                  setSearchValue(value)
+                  setCurrentPage(1)
+               }}
+               className={'max-w-[644px] flex-1'}
+            />
             <Select value={selectValue} onValueChange={setSelectValue}>
                <SelectTrigger className="w-[220px]">
                   <SelectValue placeholder="Not selected" />

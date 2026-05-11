@@ -22,6 +22,7 @@ export type SortDirection = 'ASC' | 'DESC'
 type GetUsersListQueryVariables = {
    pageNumber?: number
    pageSize?: number
+   searchLoginTerm?: string
    sortBy?: SortField
    sortDirection?: SortDirection
 }
@@ -34,12 +35,14 @@ export const GET_USERS_LIST: TypedDocumentNode<GetUsersListQuery, GetUsersListQu
       $pageSize: Float
       $sortBy: SortField
       $sortDirection: SortDirection
+      $searchLoginTerm: String
    ) {
       getUsers(
          pageNumber: $pageNumber
          pageSize: $pageSize
          sortBy: $sortBy
          sortDirection: $sortDirection
+         searchLoginTerm: $searchLoginTerm
       ) {
          users {
             id
