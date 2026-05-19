@@ -3,6 +3,8 @@ import { PrivateRouteRefresh } from '@/features/auth'
 import { verifyPrivateSession } from '@/features/auth/server'
 import { Sidebar } from '@/widgets/Sidebar'
 
+export const dynamic = 'force-dynamic'
+
 export default async function PrivateLayout({ children }: { children: ReactNode }) {
    await verifyPrivateSession()
 
