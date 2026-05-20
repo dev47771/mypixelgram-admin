@@ -5,6 +5,7 @@
    "type": "module",
    "scripts": {
       "dev": "next dev --turbopack -p 3000",
+      "dev:https": "next dev --turbopack -p 8443 --hostname app.mypixelgram.ru --experimental-https --experimental-https-key ./cert.key --experimental-https-cert ./cert.crt",
       "build": "next build --turbopack",
       "build:production": "next build",
       "start": "next start",
@@ -13,11 +14,19 @@
       "prepare": "husky install"
    },
    "dependencies": {
+      "@apollo/client": "^4.1.7",
+      "@filippsm/ui-kit-mypixelgram-demo": "^1.0.10",
+      "@hookform/resolvers": "^5.2.2",
       "clsx": "^2.1.1",
+      "date-fns": "^4.1.0",
+      "graphql": "^16.13.1",
       "next": "16.1.6",
       "react": "19.2.3",
       "react-dom": "19.2.3",
-      "tailwind-merge": "^3.3.1"
+      "react-hook-form": "^7.72.1",
+      "server-only": "^0.0.1",
+      "tailwind-merge": "^3.3.1",
+      "zod": "^4.3.6"
    },
    "devDependencies": {
       "@eslint/eslintrc": "^3",
