@@ -1,23 +1,18 @@
-#Устанавливаем зависимости
-FROM node:20.11-alpine as dependencies
+FROM node:20-alpine AS dependencies
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-#Билдим приложение
-#Кэширование зависимостей — если файлы в проекте изменились,
-#но package.json остался неизменным, то стейдж с установкой зависимостей повторно не выполняется, что экономит время.
-FROM node:20.11-alpine as builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
 RUN npm run build:production
 
-#Стейдж запуска
-FROM node:20.11-alpine as runner
-USER node
+FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV production
 COPY --from=builder /app/ ./
+USER node
 EXPOSE 3000
 CMD ["npm", "start"]
