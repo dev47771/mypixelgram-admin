@@ -13,6 +13,7 @@ const SESSION_EXPIRED_UNAUTHORIZED_ROUTE = `${SESSION_EXPIRED_ROUTE}?error=unaut
 
 export async function verifyPrivateSession(): Promise<boolean> {
    const GRAPHQL_URL = process.env.NEXT_PUBLIC_GRAPHQL_URL
+   console.log('Граф урл', GRAPHQL_URL)
    if (!GRAPHQL_URL) return redirect(SESSION_EXPIRED_ROUTE)
 
    try {

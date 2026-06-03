@@ -10,7 +10,7 @@ services:
     environment:
       NODE_ENV: production
       NEXT_PUBLIC_APP_URL: https://admin.mypixelgram.ru
-      NEXT_PUBLIC_GRAPHQL_URL: /api/v1/graphql
+      NEXT_PUBLIC_GRAPHQL_URL: https://mypixelgram.ru/api/v1/graphql
     expose:
       - "3000"
     restart: unless-stopped
