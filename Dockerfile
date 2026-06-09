@@ -8,8 +8,8 @@ WORKDIR /app
 COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
 
-ENV NEXT_PUBLIC_GRAPHQL_URL=https://mypixelgram.ru/api/v1/graphql
-ENV NEXT_PUBLIC_APP_URL=https://admin.mypixelgram.ru
+ENV NEXT_PUBLIC_GRAPHQL_URL=https://admin.mypixelgram.ru
+ENV NEXT_PUBLIC_APP_URL=https://mypixelgram.ru/api/v1/graphql
 
 RUN npm run build:production
 
