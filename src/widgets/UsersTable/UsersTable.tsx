@@ -6,7 +6,7 @@ import {
    TableHeadCell,
    TableRow,
 } from '@filippsm/ui-kit-mypixelgram-demo'
-import type { User } from '@/entities/user/model'
+import type { UserType } from '@/entities/user/model'
 import { dateFormatter } from '@/shared/utils'
 import { UserActionsMenu } from './UserActionsMenu'
 import Link from 'next/link'
@@ -14,7 +14,7 @@ import { SortIcon } from '@/shared/icons'
 import { cn } from '@/shared/lib'
 
 type Props = {
-   users?: User[]
+   users?: UserType[]
    onSortByDate: () => void
    onSortByLogin: () => void
 }
@@ -62,7 +62,7 @@ export const UsersTable = ({ users = [], onSortByDate, onSortByLogin }: Props) =
                   </TableCell>
                   <TableCell className={paddingClass}>
                      <div className="flex justify-end">
-                        <UserActionsMenu />
+                        <UserActionsMenu user={user} />
                      </div>
                   </TableCell>
                </TableRow>
