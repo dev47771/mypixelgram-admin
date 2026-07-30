@@ -1,15 +1,17 @@
 import { gql, type TypedDocumentNode } from '@apollo/client'
 
 type GetPaymentsListQuery = {
-   getUsers: {
+   getPaymentsList: {
       payments: {
-         id: string
+         userId: string
+         username: string
+         avatarUrl: string | null
          paymentDate: string
-         amount: number
+         amount: string
          subscriptionType: string
          paymentType: string
       }[]
-      paymentsPagination: {
+      pageInfo: {
          pageNumber: number
          pageSize: number
          totalPages: number
@@ -19,8 +21,8 @@ type GetPaymentsListQuery = {
 }
 
 type GetPaymentsListQueryVariables = {
-   pageNumber?: number
-   pageSize?: number
+   pageNumber: number
+   pageSize: number
    searchLoginTerm?: string
 }
 
@@ -28,16 +30,22 @@ export const GET_PAYMENTS_LIST: TypedDocumentNode<
    GetPaymentsListQuery,
    GetPaymentsListQueryVariables
 > = gql`
-   query GetPaymentsList($pageNumber: Float, $pageSize: Float, $searchLoginTerm: String) {
-      getUsers(pageNumber: $pageNumber, pageSize: $pageSize, searchLoginTerm: $searchLoginTerm) {
+   query GetPaymentsList($pageNumber: Int!, $pageSize: Int!, $searchLoginTerm: String) {
+      getPaymentsList(
+         pageNumber: $pageNumber
+         pageSize: $pageSize
+         searchLoginTerm: $searchLoginTerm
+      ) {
          payments {
-            id
+            userId
+            username
+            avatarUrl
             paymentDate
             amount
             subscriptionType
             paymentType
          }
-         paymentsPagination {
+         pageInfo {
             pageNumber
             pageSize
             totalPages
@@ -47,4 +55,4 @@ export const GET_PAYMENTS_LIST: TypedDocumentNode<
    }
 `
 
-export type PaymentsListItem = GetPaymentsListQuery['getUsers']['payments'][number]
+export type PaymentsListItem = GetPaymentsListQuery['getPaymentsList']['payments'][number]

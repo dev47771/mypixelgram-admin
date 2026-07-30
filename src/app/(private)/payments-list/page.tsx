@@ -12,15 +12,15 @@ import { PaymentsTable } from '@/widgets/PaymentsTable'
 const Page = () => {
    const [currentPage, setCurrentPage] = useState(START_CURRENT_PAGE)
    const [pageSize, setPageSize] = useState<PageSize>(START_PAGE_SIZE)
-   const [searchValue, setSearchValue] = useState<string>('')
+   const [searchValue, setSearchValue] = useState('')
 
    const { loading, data, refetch, error, networkStatus } = useQuery(GET_PAYMENTS_LIST, {
       variables: { pageSize, pageNumber: currentPage, searchLoginTerm: searchValue },
       notifyOnNetworkStatusChange: true,
    })
 
-   const payments = data?.getUsers.payments ?? []
-   const totalCount = data?.getUsers.paymentsPagination.totalItems ?? 0
+   const payments = data?.getPaymentsList.payments ?? []
+   const totalCount = data?.getPaymentsList.pageInfo.totalItems ?? 0
 
    const isInitialLoading = loading && networkStatus === NetworkStatus.loading && !data
    const isUpdatingPayments =

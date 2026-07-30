@@ -1,4 +1,5 @@
 import {
+   Avatar,
    Table,
    TableBody,
    TableCell,
@@ -20,6 +21,7 @@ export const PaymentsTable = ({ payments = [] }: Props) => {
       <Table className="mt-6 mb-9 table-fixed">
          <TableHead>
             <TableRow>
+               <TableHeadCell className={paddingClass}>Full Name</TableHeadCell>
                <TableHeadCell className={paddingClass}>Date of Payment</TableHeadCell>
                <TableHeadCell className={paddingClass}>Amount</TableHeadCell>
                <TableHeadCell className={paddingClass}>Subscription</TableHeadCell>
@@ -28,8 +30,14 @@ export const PaymentsTable = ({ payments = [] }: Props) => {
          </TableHead>
 
          <TableBody>
-            {payments.map(payment => (
-               <TableRow key={payment.id}>
+            {payments.map((payment, index) => (
+               <TableRow key={`${payment.userId}-${payment.paymentDate}-${index}`}>
+                  <TableCell className={paddingClass}>
+                     <div className="flex items-center gap-3">
+                        <Avatar src={payment.avatarUrl} alt={payment.username} size="md" />
+                        <span>{payment.username}</span>
+                     </div>
+                  </TableCell>
                   <TableCell className={paddingClass}>
                      {dateFormatter.serverToForm(payment.paymentDate)}
                   </TableCell>
