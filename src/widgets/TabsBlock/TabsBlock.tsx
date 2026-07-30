@@ -37,7 +37,7 @@ export function TabsBlock({ initialPart, profileLogin }: TabsBlockProps) {
                <TabsTrigger value={PROFILE_TAB_VALUES.following}>Following</TabsTrigger>
             </TabsList>
             <TabsContent value={PROFILE_TAB_VALUES.uploadedFiles}>
-               <UploadedFilesTabPage />
+               <UploadedFilesTabPage profileLogin={profileLogin ?? ''} />
             </TabsContent>
             <TabsContent value={PROFILE_TAB_VALUES.payments}>
                <PaymentsTabPage profileLogin={profileLogin ?? ''} />

@@ -9,14 +9,20 @@ export { type PageSize } from './constans/pageSizeOptions'
 export { START_CURRENT_PAGE } from './constans/pageSizeOptions'
 export { START_PAGE_SIZE } from './constans/pageSizeOptions'
 export {
+   GET_POSTS_LIST,
    GET_USER_PAYMENTS,
    GET_USER_PROFILE,
+   usePostsList,
    useUserPayments,
    useUserProfile,
+   type GetPostsListQuery,
+   type GetPostsListQueryVariables,
    type GetUserPaymentsQuery,
    type GetUserPaymentsQueryVariables,
    type GetUserProfileQuery,
    type GetUserProfileQueryVariables,
    type PaymentsPagination,
+   type PostPublication,
+   type PostsPageInfo,
    type UserPayment,
 } from './api'

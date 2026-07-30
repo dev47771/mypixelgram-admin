@@ -48,3 +48,26 @@ export type GetUserPaymentsQuery = {
 export type GetUserPaymentsQueryVariables = {
    searchLoginTerm: string
 }
+
+export type PostPublication = {
+   userId: string
+   username: string
+   postId: string
+   firstFileUrl: string | null
+}
+
+export type PostsPageInfo = {
+   nextCursor: string | null
+   hasMore: boolean
+}
+
+export type GetPostsListQuery = {
+   getPostsList: {
+      publications: PostPublication[]
+      pageInfo: PostsPageInfo
+   }
+}
+
+export type GetPostsListQueryVariables = {
+   searchLoginTerm: string
+}

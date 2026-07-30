@@ -25,22 +25,24 @@ export const PostsGrid = ({ posts }: Props) => {
 
    return (
       <div className="grid grid-cols-[repeat(auto-fill,230px)] justify-center gap-4">
-         {posts.map(({ postId, firstFileUrl }) => (
-            <Link
-               key={postId}
-               href={getQuery(postId)}
-               className="relative h-[228px] w-[234px] cursor-pointer"
-            >
-               <Image
-                  loading={'eager'}
-                  src={firstFileUrl ?? ''}
-                  alt="post image"
-                  width={234}
-                  height={228}
-                  className="h-full w-full object-cover"
-               />
-            </Link>
-         ))}
+         {posts.map(({ postId, firstFileUrl }) =>
+            firstFileUrl ? (
+               <Link
+                  key={postId}
+                  href={getQuery(postId)}
+                  className="relative h-[228px] w-[234px] cursor-pointer"
+               >
+                  <Image
+                     loading={'eager'}
+                     src={firstFileUrl}
+                     alt="post image"
+                     width={234}
+                     height={228}
+                     className="h-full w-full object-cover"
+                  />
+               </Link>
+            ) : null
+         )}
       </div>
    )
 }

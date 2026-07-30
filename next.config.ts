@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
             hostname: 'avavatar.ru',
             pathname: '/**',
          },
+         {
+            protocol: 'https',
+            hostname: 'storage.yandexcloud.net',
+            pathname: '/**',
+         },
       ],
    },
 }

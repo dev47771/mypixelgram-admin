@@ -42,3 +42,20 @@ export const GET_USER_PAYMENTS = gql`
       }
    }
 `
+
+export const GET_POSTS_LIST = gql`
+   query GetPostsList($searchLoginTerm: String!) {
+      getPostsList(searchLoginTerm: $searchLoginTerm) {
+         publications {
+            userId
+            username
+            postId
+            firstFileUrl
+         }
+         pageInfo {
+            nextCursor
+            hasMore
+         }
+      }
+   }
+`

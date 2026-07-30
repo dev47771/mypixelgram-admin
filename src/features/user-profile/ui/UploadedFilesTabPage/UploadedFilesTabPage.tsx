@@ -1,18 +1,38 @@
-import { PostsGrid, type Publication } from './PostsGrid'
+'use client'
 
-const MOCK_POST_IMAGE_URL =
-   'https://avavatar.ru/images/content/1/avavatar.ru-night_sky-full_moon-378.webp'
+import { Button, Loader } from '@filippsm/ui-kit-mypixelgram-demo'
+import { usePostsList } from '../../api/usePostsList'
+import { PostsGrid } from './PostsGrid'
 
-/** Временный мок для UI, пока нет данных с бекенда */
-const mockPosts: Publication[] = Array.from({ length: 20 }, (_, i) => ({
-   postId: `mock-${i + 1}`,
-   firstFileUrl: MOCK_POST_IMAGE_URL,
-}))
+type UploadedFilesTabPageProps = {
+   profileLogin: string
+}
 
-export const UploadedFilesTabPage = () => {
+export const UploadedFilesTabPage = ({ profileLogin }: UploadedFilesTabPageProps) => {
+   const { data, loading, error, refetch } = usePostsList(profileLogin)
+
+   if (loading) return <Loader />
+
+   if (error) {
+      return (
+         <div className="bg-dark-500 border-dark-300 mx-auto mt-12 w-fit border p-4">
+            Failed to load posts. Please try again later.
+            <Button onClick={() => refetch()} className="ml-8">
+               Try again
+            </Button>
+         </div>
+      )
+   }
+
+   const posts = data?.getPostsList.publications ?? []
+
    return (
       <div className="mt-12">
-         <PostsGrid posts={mockPosts} />
+         {posts.length > 0 ? (
+            <PostsGrid posts={posts} />
+         ) : (
+            <p className="py-8 text-center">No uploaded files yet</p>
+         )}
       </div>
    )
 }
