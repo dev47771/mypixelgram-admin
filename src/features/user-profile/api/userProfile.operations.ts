@@ -18,19 +18,26 @@ export const GET_USER_PROFILE = gql`
 `
 
 export const GET_USER_PAYMENTS = gql`
-   query GetUserPayments($searchLoginTerm: String!, $pageNumber: Float!, $pageSize: Float!) {
-      getUsers(searchLoginTerm: $searchLoginTerm, pageNumber: $pageNumber, pageSize: $pageSize) {
-         payments {
-            amount
-            paymentDate
-            subscriptionType
-            paymentType
-         }
-         paymentsPagination {
+   query GetUserPayments($searchLoginTerm: String!) {
+      getUsers(searchLoginTerm: $searchLoginTerm) {
+         pageInfo {
             pageNumber
             pageSize
             totalPages
             totalItems
+         }
+         users {
+            id
+            login
+            email
+            createdAt
+            payments {
+               id
+               amount
+               paymentDate
+               subscriptionType
+               paymentType
+            }
          }
       }
    }

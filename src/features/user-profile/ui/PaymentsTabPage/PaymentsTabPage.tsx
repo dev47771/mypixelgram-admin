@@ -28,11 +28,7 @@ export const PaymentsTabPage = ({ profileLogin }: PaymentsTabPageProps) => {
    const [currentPage, setCurrentPage] = useState(START_CURRENT_PAGE)
    const [pageSize, setPageSize] = useState<PageSize>(START_PAGE_SIZE)
 
-   const { data, loading, error, refetch } = useUserPayments(
-      profileLogin,
-      currentPage,
-      Number(pageSize)
-   )
+   const { data, loading, error, refetch } = useUserPayments(profileLogin)
 
    if (loading) return <Loader />
    if (error) {
@@ -46,8 +42,10 @@ export const PaymentsTabPage = ({ profileLogin }: PaymentsTabPageProps) => {
       )
    }
 
-   const payments = data?.getUsers.payments ?? []
-   const totalCount = data?.getUsers.paymentsPagination.totalItems ?? 0
+   const allPayments = data?.getUsers.users[0]?.payments ?? []
+   const totalCount = allPayments.length
+   const startIndex = (currentPage - 1) * Number(pageSize)
+   const payments = allPayments.slice(startIndex, startIndex + Number(pageSize))
 
    const paddingClass = 'py-2'
 
@@ -66,10 +64,8 @@ export const PaymentsTabPage = ({ profileLogin }: PaymentsTabPageProps) => {
 
             <TableBody>
                {payments.length > 0 ? (
-                  payments.map((payment, index) => (
-                     <TableRow
-                        key={`${payment.paymentDate}-${payment.amount}-${payment.subscriptionType}-${index}`}
-                     >
+                  payments.map(payment => (
+                     <TableRow key={payment.id}>
                         <TableCell className={paddingClass}>{payment.paymentDate}</TableCell>
                         <TableCell className={paddingClass}>—</TableCell>
                         <TableCell className={paddingClass}>{payment.amount}</TableCell>

@@ -18,6 +18,7 @@ export type GetUserProfileQueryVariables = {
 }
 
 export type UserPayment = {
+   id: string
    amount: number
    paymentDate: string
    subscriptionType: string
@@ -33,13 +34,17 @@ export type PaymentsPagination = {
 
 export type GetUserPaymentsQuery = {
    getUsers: {
-      payments: UserPayment[]
-      paymentsPagination: PaymentsPagination
+      pageInfo: PaymentsPagination
+      users: {
+         id: string
+         login: string
+         email: string
+         createdAt: string
+         payments: UserPayment[]
+      }[]
    }
 }
 
 export type GetUserPaymentsQueryVariables = {
    searchLoginTerm: string
-   pageNumber: number
-   pageSize: number
 }
