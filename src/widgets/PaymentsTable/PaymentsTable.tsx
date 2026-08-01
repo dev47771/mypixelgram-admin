@@ -1,5 +1,6 @@
 import {
    Avatar,
+   FilterIcon,
    Table,
    TableBody,
    TableCell,
@@ -21,11 +22,31 @@ export const PaymentsTable = ({ payments = [] }: Props) => {
       <Table className="mt-6 mb-9 table-fixed">
          <TableHead>
             <TableRow>
-               <TableHeadCell className={paddingClass}>Full Name</TableHeadCell>
-               <TableHeadCell className={paddingClass}>Date of Payment</TableHeadCell>
-               <TableHeadCell className={paddingClass}>Amount</TableHeadCell>
+               <TableHeadCell className={paddingClass}>
+                  <div className="flex items-center gap-[6px] whitespace-nowrap">
+                     Full Name
+                     <FilterIcon className="cursor-pointer" />
+                  </div>
+               </TableHeadCell>
+               <TableHeadCell className={paddingClass}>
+                  <div className="flex items-center gap-[6px] whitespace-nowrap">
+                     Date of Payment
+                     <FilterIcon className="cursor-pointer" />
+                  </div>
+               </TableHeadCell>
+               <TableHeadCell className={paddingClass}>
+                  <div className="flex items-center gap-[6px] whitespace-nowrap">
+                     Amount
+                     <FilterIcon className="cursor-pointer" />
+                  </div>
+               </TableHeadCell>
                <TableHeadCell className={paddingClass}>Subscription</TableHeadCell>
-               <TableHeadCell className={paddingClass}>Payment Method</TableHeadCell>
+               <TableHeadCell className={paddingClass}>
+                  <div className="flex items-center gap-[6px] whitespace-nowrap">
+                     Payment Method
+                     <FilterIcon className="cursor-pointer" />
+                  </div>
+               </TableHeadCell>
             </TableRow>
          </TableHead>
 
