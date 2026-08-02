@@ -1,1 +1,6 @@
-export { GET_PAYMENTS_LIST, type PaymentsListItem } from './payments.service'
+export {
+   GET_PAYMENTS_LIST,
+   type PaymentsListItem,
+   type PaymentsSortDirection,
+   type PaymentsSortField,
+} from './payments.service'

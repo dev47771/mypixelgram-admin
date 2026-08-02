@@ -24,17 +24,30 @@ type GetPaymentsListQueryVariables = {
    pageNumber: number
    pageSize: number
    searchLoginTerm?: string
+   sortBy?: PaymentsSortField
+   sortDirection?: PaymentsSortDirection
 }
+
+export type PaymentsSortField = 'USERNAME' | 'DATE' | 'AMOUNT' | 'PAYMENT_METHOD'
+export type PaymentsSortDirection = 'ASC' | 'DESC'
 
 export const GET_PAYMENTS_LIST: TypedDocumentNode<
    GetPaymentsListQuery,
    GetPaymentsListQueryVariables
 > = gql`
-   query GetPaymentsList($pageNumber: Int!, $pageSize: Int!, $searchLoginTerm: String) {
+   query GetPaymentsList(
+      $pageNumber: Int!
+      $pageSize: Int!
+      $searchLoginTerm: String
+      $sortBy: PaymentsSortField
+      $sortDirection: PaymentsSortDirection
+   ) {
       getPaymentsList(
          pageNumber: $pageNumber
          pageSize: $pageSize
          searchLoginTerm: $searchLoginTerm
+         sortBy: $sortBy
+         sortDirection: $sortDirection
       ) {
          payments {
             userId

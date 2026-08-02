@@ -6,16 +6,30 @@ import { useState } from 'react'
 import { useQuery } from '@apollo/client/react'
 import { PAGE_SIZE_OPTIONS, type PageSize, START_CURRENT_PAGE, START_PAGE_SIZE } from './pagination'
 import { NetworkStatus } from '@apollo/client'
-import { GET_PAYMENTS_LIST } from '@/features/payments/api'
+import {
+   GET_PAYMENTS_LIST,
+   type PaymentsSortDirection,
+   type PaymentsSortField,
+} from '@/features/payments/api'
 import { PaymentsTable } from '@/widgets/PaymentsTable'
 
 const Page = () => {
    const [currentPage, setCurrentPage] = useState(START_CURRENT_PAGE)
    const [pageSize, setPageSize] = useState<PageSize>(START_PAGE_SIZE)
    const [searchValue, setSearchValue] = useState('')
+   const [sort, setSort] = useState<{
+      field: PaymentsSortField
+      direction: PaymentsSortDirection
+   }>()
 
    const { loading, data, refetch, error, networkStatus } = useQuery(GET_PAYMENTS_LIST, {
-      variables: { pageSize, pageNumber: currentPage, searchLoginTerm: searchValue },
+      variables: {
+         pageSize,
+         pageNumber: currentPage,
+         searchLoginTerm: searchValue,
+         sortBy: sort?.field,
+         sortDirection: sort?.direction,
+      },
       notifyOnNetworkStatusChange: true,
    })
 
@@ -60,7 +74,19 @@ const Page = () => {
                   Payments not found
                </Typography>
             ) : (
-               <PaymentsTable payments={payments} />
+               <PaymentsTable
+                  payments={payments}
+                  onSort={field => {
+                     setSort(currentSort => ({
+                        field,
+                        direction:
+                           currentSort?.field === field && currentSort.direction === 'DESC'
+                              ? 'ASC'
+                              : 'DESC',
+                     }))
+                     setCurrentPage(1)
+                  }}
+               />
             )}
 
             {totalCount > 0 && (
